@@ -1,3 +1,6 @@
 msgs/
 opt.*/
 debug.*/
+.vs/
+Debug/
+Release/
