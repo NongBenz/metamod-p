@@ -78,14 +78,14 @@ ifeq "$(OS)" "linux"
 	TARGET_FILE=$(TARGET_LINUX)
 else	## windows
 	INSTALL=cp
-	LD_WINDLL= i686-w64-mingw32-dllwrap
+	LD_WINDLL= dllwrap
 	OSTARGET=win32
 	LIBFILE=$(LIBFILE_WIN)
 	TARGET_FILE=$(TARGET_WIN)
 endif
 
 CC_WIN=i686-w64-mingw32-gcc
-RES_WIN=i686-w64-mingw32-windres
+RES_WIN=windres
 
 ifeq "$(HOST)" "cygwin"
 	CC_WIN += -mno-cygwin
@@ -281,7 +281,7 @@ DO_RES_WIN=$(RES_WIN) '$(ODEF)' --include-dir . --include-dir ../metamod -i $< -
 #LINK_WIN=$(LD_WINDLL) -k -mwindows --add-stdcall-alias --def metamod.def -o $@ $(OBJ_WIN)
 #LINK_WIN=$(LD_WINDLL) -A -k -mwindows --export-all-symbols -o $@ $(OBJ_WIN)
 #LINK_WIN=$(LD_WINDLL) -mwindows --add-stdcall-alias $(OBJ_WIN) $(RES_OBJ_WIN) -lstdc++ -s -o $@
-LINK_WIN=$(CC_WIN) $(CFLAGS) -mdll -Xlinker --add-stdcall-alias $(EXTRA_LINK) $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@
+LINK_WIN=$(CC_WIN) $(CFLAGS) -mdll -Xlinker --add-stdcall-alias $(EXTRA_LINK) $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
 
 # windows object files
 OBJ_WIN := $(SRCFILES:%.cpp=$(OBJDIR_WIN)/%.o)
