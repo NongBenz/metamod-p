@@ -81,13 +81,13 @@ extern void Sys_Error_Post( const char *error_string );
 // from SDK pm_shared/pm_shared.h:
 extern void PM_Move_Post( struct playermove_s *ppmove, int server );
 extern void PM_Init_Post( struct playermove_s *ppmove );
-extern char PM_FindTextureType_Post( char *name );
+extern char PM_FindTextureType_Post( const char *name );
 
 // from SDK dlls/client.h:
 extern void SetupVisibility_Post( edict_t *pViewEntity, edict_t *pClient, unsigned char **pvs, unsigned char **pas );
 extern void UpdateClientData_Post( const struct edict_s *ent, int sendweapons, struct clientdata_s *cd );
 extern int AddToFullPack_Post( struct entity_state_s *state, int e, edict_t *ent, edict_t *host, int hostflags, int player, unsigned char *pSet );
-extern void CreateBaseline_Post( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, vec3_t player_mins, vec3_t player_maxs );
+extern void CreateBaseline_Post( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, Vector* player_mins, Vector* player_maxs );
 extern void RegisterEncoders_Post( void );
 extern int GetWeaponData_Post( struct edict_s *player, struct weapon_data_s *info );
 extern void CmdStart_Post( const edict_t *player, const struct usercmd_s *cmd, unsigned int random_seed );

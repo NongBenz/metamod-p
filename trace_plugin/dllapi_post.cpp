@@ -203,7 +203,7 @@ void PM_Init_Post( struct playermove_s *ppmove ) {
 	DLL_TRACE(pfnPM_Init, P_POST, (""));
 	RETURN_META(MRES_IGNORED);
 }
-char PM_FindTextureType_Post( char *name ) {
+char PM_FindTextureType_Post( const char *name ) {
 	DLL_TRACE(pfnPM_FindTextureType, P_POST, (""));
 	RETURN_META_VALUE(MRES_IGNORED, '\0');
 }
@@ -221,7 +221,7 @@ int AddToFullPack_Post( struct entity_state_s *state, int e, edict_t *ent, edict
 	DLL_TRACE(pfnAddToFullPack, P_POST, ("returning %d", META_RESULT_ORIG_RET(int)));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
-void CreateBaseline_Post( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, vec3_t player_mins, vec3_t player_maxs ) {
+void CreateBaseline_Post( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, Vector* player_mins, Vector* player_maxs ) {
 	DLL_TRACE(pfnCreateBaseline, P_POST, (""));
 	RETURN_META(MRES_IGNORED);
 }

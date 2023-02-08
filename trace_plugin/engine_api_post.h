@@ -259,9 +259,6 @@ extern int IsCareerMatch(void);
 extern int GetLocalizedStringLength(const char *label);
 extern void RegisterTutorMessageShown(int mid);
 extern int GetTimesTutorMessageShown(int mid);
-extern void ProcessTutorMessageDecayBuffer(int *buffer, int bufferLength);
-extern void ConstructTutorMessageDecayBuffer(int *buffer, int bufferLength);
-extern void ResetTutorMessageDecayData(void);
 
 
 // Added 2005-08-11 (no SDK update):
@@ -269,8 +266,5 @@ extern void QueryClientCvarValue_Post(const edict_t *pEdict, const char *cvar);
 
 // Added 2005-11-22 (no SDK update):
 extern void QueryClientCvarValue2_Post(const edict_t *pEdict, const char *cvar, int requestID);
-
-// Added 2009-06-17 (no SDK update):
-extern int EngCheckParm_Post(const char *pchCmdLineToken, char **pchNextVal);
 
 #endif /* ENGINE_API_POST_H */

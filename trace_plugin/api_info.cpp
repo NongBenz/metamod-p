@@ -259,15 +259,11 @@ engine_info_t engine_info = {
 	{ mFALSE,  30,	api_caller_int_args_p,		"GetLocalizedStringLength" },	// pfnGetLocalizedStringLength
 	{ mFALSE,  30,	api_caller_void_args_i,		"RegisterTutorMessageShown" },	// pfnRegisterTutorMessageShown
 	{ mFALSE,  30,	api_caller_int_args_i,		"GetTimesTutorMessageShown" },	// pfnGetTimesTutorMessageShown
-	{ mFALSE,  30,	api_caller_void_args_pi,	"ProcessTutorMessageDecayBuffer" },	// pfnProcessTutorMessageDecayBuffer
-	{ mFALSE,  30,	api_caller_void_args_pi,	"ConstructTutorMessageDecayBuffer" },	// pfnConstructTutorMessageDecayBuffer
-	{ mFALSE,  9,	api_caller_void_args_void,	"ResetTutorMessageDecayData" },	// pfnResetTutorMessageDecayData
 	// Added 2005/08/11 (no SDK update):
 	{ mFALSE,  3,	api_caller_void_args_2p,	"QueryClientCvarValue" },	// pfnQueryClientCvarValue
 	// Added 2005/11/21 (no SDK update):
 	{ mFALSE,  3,	api_caller_void_args_2pi,	"QueryClientCvarValue2" },	// pfnQueryClientCvarValue2
 	// Added 2009-06-17 (no SDK update):
-	{ mFALSE,  8,	api_caller_int_args_2p,		"EngCheckParm" },		// pfnEngCheckParm
 	// end
 	{ mFALSE,  0,   NULL,	NULL },
 };

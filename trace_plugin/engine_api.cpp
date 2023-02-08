@@ -45,11 +45,11 @@
 #include "support_meta.h"		// MAX_STRBUF_LEN
 #include "log_plugin.h"
 
-int PrecacheModel(char *s) {
+int PrecacheModel(const char *s) {
 	ENGINE_TRACE(pfnPrecacheModel, P_PRE, ("model=%s", s));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
-int PrecacheSound(char *s) {
+int PrecacheSound(const char *s) {
 	ENGINE_TRACE(pfnPrecacheSound, P_PRE, ("sound=%s", s));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
@@ -74,7 +74,7 @@ void SetSize(edict_t *e, const float *rgflMin, const float *rgflMax) {
 	ENGINE_TRACE(pfnSetSize, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
-void ChangeLevel(char *s1, char *s2) {
+void ChangeLevel(const char *s1, const char *s2) {
 	ENGINE_TRACE(pfnChangeLevel, P_PRE, ("s1=%s, s2=%s", s1, s2));
 	RETURN_META(MRES_IGNORED);
 }
@@ -220,7 +220,7 @@ void GetAimVector(edict_t *ent, float speed, float *rgflReturn) {
 	RETURN_META(MRES_IGNORED);
 }
 
-void ServerCommand(char *str) {
+void ServerCommand(const char *str) {
 	ENGINE_TRACE(pfnServerCommand, P_PRE, ("cmd=%s", str));
 	RETURN_META(MRES_IGNORED);
 }
@@ -228,7 +228,7 @@ void ServerExecute(void) {
 	ENGINE_TRACE(pfnServerExecute, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
-void engClientCommand(edict_t *pEdict, char *szFmt, ...) {
+void engClientCommand(edict_t *pEdict, const char *szFmt, ...) {
 	va_list ap;
 	char buf[1024];
 	char *cp;
@@ -245,7 +245,7 @@ void ParticleEffect(const float *org, const float *dir, float color, float count
 	ENGINE_TRACE(pfnParticleEffect, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
-void LightStyle(int style, char *val) {
+void LightStyle(int style, const char *val) {
 	ENGINE_TRACE(pfnLightStyle, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
@@ -330,7 +330,7 @@ void CVarSetString(const char *szVarName, const char *szValue) {
 	RETURN_META(MRES_IGNORED);
 }
 
-void AlertMessage(ALERT_TYPE atype, char *szFmt, ...) {
+void AlertMessage(ALERT_TYPE atype, const char *szFmt, ...) {
 	char *astr;
 	va_list ap;
 	char buf[MAX_STRBUF_LEN];
@@ -365,9 +365,9 @@ void AlertMessage(ALERT_TYPE atype, char *szFmt, ...) {
 	RETURN_META(MRES_IGNORED);
 }
 #ifdef HLSDK_3_2_OLD_EIFACE
-void EngineFprintf(FILE *pfile, char *szFmt, ...) {
+void EngineFprintf(FILE *pfile, const char *szFmt, ...) {
 #else
-void EngineFprintf(void *pfile, char *szFmt, ...) {
+void EngineFprintf(void *pfile, const char *szFmt, ...) {
 #endif
 	va_list ap;
 	char buf[1024];
@@ -547,7 +547,7 @@ void CrosshairAngle(const edict_t *pClient, float pitch, float yaw) {
 	RETURN_META(MRES_IGNORED);
 }
 
-byte *LoadFileForMe(char *filename, int *pLength) {
+byte *LoadFileForMe(const char *filename, int *pLength) {
 	ENGINE_TRACE(pfnLoadFileForMe, P_PRE, ("file=%s", filename));
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
@@ -561,7 +561,7 @@ void EndSection(const char *pszSectionName) {
 	ENGINE_TRACE(pfnEndSection, P_PRE, ("section=%s", pszSectionName));
 	RETURN_META(MRES_IGNORED);
 }
-int CompareFileTime(char *filename1, char *filename2, int *iCompare) {
+int CompareFileTime(const char *filename1, const char *filename2, int *iCompare) {
 	ENGINE_TRACE(pfnCompareFileTime, P_PRE, ("file1=%s, file2=%s", filename1, filename2));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
@@ -602,20 +602,20 @@ char *GetInfoKeyBuffer(edict_t *e) {
 	ENGINE_TRACE(pfnGetInfoKeyBuffer, P_PRE, (""));
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
-char *InfoKeyValue(char *infobuffer, char *key) {
+char *InfoKeyValue(char *infobuffer, const char *key) {
 	ENGINE_TRACE(pfnInfoKeyValue, P_PRE, ("key=%s", key));
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
-void SetKeyValue(char *infobuffer, char *key, char *value) {
+void SetKeyValue(char *infobuffer, const char *key, const char *value) {
 	ENGINE_TRACE(pfnSetKeyValue, P_PRE, ("key=%s, value=%s", key, value));
 	RETURN_META(MRES_IGNORED);
 }
-void SetClientKeyValue(int clientIndex, char *infobuffer, char *key, char *value) {
+void SetClientKeyValue(int clientIndex, char *infobuffer, const char *key, const char *value) {
 	ENGINE_TRACE(pfnSetClientKeyValue, P_PRE, ("index=%d, key=%s, value=%s", clientIndex, key, value));
 	RETURN_META(MRES_IGNORED);
 }
 
-int IsMapValid(char *filename) {
+int IsMapValid(const char *filename) {
 	// more trace output in Post
 	ENGINE_TRACE(pfnIsMapValid, P_PRE, ("filename=%s", filename));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
@@ -624,7 +624,7 @@ void StaticDecal( const float *origin, int decalIndex, int entityIndex, int mode
 	ENGINE_TRACE(pfnStaticDecal, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
-int PrecacheGeneric(char *s) {
+int PrecacheGeneric(const char *s) {
 	ENGINE_TRACE(pfnPrecacheGeneric, P_PRE, ("name=%s", s));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
@@ -680,7 +680,7 @@ unsigned short PrecacheEvent( int type, const char *psz ) {
 	ENGINE_TRACE(pfnPrecacheEvent, P_PRE, ("event=%s", psz));
 	RETURN_META_VALUE(MRES_IGNORED, 0U);
 }
-void PlaybackEvent( int flags, const edict_t *pInvoker, unsigned short eventindex, float delay, float *origin, float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 ) 
+void PlaybackEvent( int flags, const edict_t *pInvoker, unsigned short eventindex, float delay, const float *origin, const float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 ) 
 {
 	ENGINE_TRACE(pfnPlaybackEvent, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
@@ -708,7 +708,7 @@ void DeltaUnsetField( struct delta_s *pFields, const char *fieldname ) {
 	ENGINE_TRACE(pfnDeltaUnsetField, P_PRE, ("field=%s", fieldname));
 	RETURN_META(MRES_IGNORED);
 }
-void DeltaAddEncoder( char *name, void (*conditionalencode)( struct delta_s *pFields, const unsigned char *from, const unsigned char *to ) ) {
+void DeltaAddEncoder( const char *name, void (*conditionalencode)( struct delta_s *pFields, const unsigned char *from, const unsigned char *to ) ) {
 	ENGINE_TRACE(pfnDeltaAddEncoder, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
@@ -743,7 +743,7 @@ int engCreateInstancedBaseline( int classname, struct entity_state_s *baseline )
 	ENGINE_TRACE(pfnCreateInstancedBaseline, P_PRE, (""));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
-void Cvar_DirectSet( struct cvar_s *var, char *value ) {
+void Cvar_DirectSet( struct cvar_s *var, const char *value ) {
 	ENGINE_TRACE(pfnCvar_DirectSet, P_PRE, ("cvar=%s", var->name));
 	RETURN_META(MRES_IGNORED);
 }
@@ -761,7 +761,7 @@ void GetPlayerStats( const edict_t *pClient, int *ping, int *packet_loss ) {
 	RETURN_META(MRES_IGNORED);
 }
 
-void AddServerCommand( char *cmd_name, void (*function) (void) ) {
+void AddServerCommand( const char *cmd_name, void (*function) (void) ) {
 	ENGINE_TRACE(pfnAddServerCommand, P_PRE, ("cmd=%s", cmd_name));
 	RETURN_META(MRES_IGNORED);
 }
@@ -799,7 +799,7 @@ sentenceEntry_s *SequencePickSentence(const char* groupName, int pickMethod, int
 	RETURN_META_VALUE(MRES_IGNORED, NULL);
 }
 
-int GetFileSize(char *filename) {
+int GetFileSize(const char *filename) {
 	ENGINE_TRACE(pfnGetFileSize, P_PRE, (""));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
@@ -829,21 +829,6 @@ int GetTimesTutorMessageShown(int mid) {
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
 
-void ProcessTutorMessageDecayBuffer(int *buffer, int bufferLength) {
-	ENGINE_TRACE(pfnProcessTutorMessageDecayBuffer, P_PRE, (""));
-	RETURN_META(MRES_IGNORED);
-}
-
-void ConstructTutorMessageDecayBuffer(int *buffer, int bufferLength) {
-	ENGINE_TRACE(pfnConstructTutorMessageDecayBuffer, P_PRE, (""));
-	RETURN_META(MRES_IGNORED);
-}
-
-void ResetTutorMessageDecayData(void) {
-	ENGINE_TRACE(pfnResetTutorMessageDecayData, P_PRE, (""));
-	RETURN_META(MRES_IGNORED);
-}
-
 void QueryClientCvarValue(const edict_t *pEdict, const char *cvarName)
 {
 	ENGINE_TRACE(pfnQueryClientCvarValue, P_PRE, ("queried=%s",cvarName?cvarName:"nil"));
@@ -854,12 +839,6 @@ void QueryClientCvarValue2(const edict_t *pEdict, const char *cvarName, int requ
 {
 	ENGINE_TRACE(pfnQueryClientCvarValue2, P_PRE, ("queried=%s, requestID=%d",cvarName?cvarName:"nil",requestID));
 	RETURN_META(MRES_IGNORED);
-}
-
-int EngCheckParm(const char *pchCmdLineToken, char **pchNextVal)
-{
-	ENGINE_TRACE(pfnEngCheckParm, P_PRE, ("token=%s",pchCmdLineToken?pchCmdLineToken:"nil"));
-	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
 
 enginefuncs_t meta_engfuncs = {
@@ -1062,12 +1041,8 @@ enginefuncs_t meta_engfuncs = {
 	GetLocalizedStringLength,		// pfnGetLocalizedStringLength()
 	RegisterTutorMessageShown,		// pfnRegisterTutorMessageShown()
 	GetTimesTutorMessageShown,		// pfnGetTimesTutorMessageShown()
-	ProcessTutorMessageDecayBuffer,	// pfnProcessTutorMessageDecayBuffer()
-	ConstructTutorMessageDecayBuffer,	// pfnConstructTutorMessageDecayBuffer()
-	ResetTutorMessageDecayData,		// pfnResetTutorMessageDecayData()
 	QueryClientCvarValue,			// pfnQueryClientCvarValue()
-	QueryClientCvarValue2,			// pfnQueryClientCvarValue2()
-	EngCheckParm,					// pfnEngCheckParm()
+	QueryClientCvarValue2			// pfnQueryClientCvarValue2()
 };
 
 C_DLLEXPORT int GetEngineFunctions(enginefuncs_t *pengfuncsFromEngine, 

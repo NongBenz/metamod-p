@@ -33,8 +33,8 @@
 #include <meta_api.h>
 
 //! Holds engine functionality callbacks
-enginefuncs_t g_engfuncs;
-globalvars_t  *gpGlobals;
+//enginefuncs_t g_engfuncs;
+//globalvars_t  *gpGlobals;
 
 // Receive engine function table from engine.
 // This appears to be the _first_ DLL routine called by the engine, so we

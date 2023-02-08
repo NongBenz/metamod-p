@@ -535,7 +535,7 @@ void HL_enginefuncs_t::initialise_interface( enginefuncs_t *_pFuncs )
 //		// different career game profiles.  Also needs to persist regardless of mp.dll being
 //		// destroyed and recreated.
 //		void		(*pfnRegisterTutorMessageShown)			(int mid);
-//		int			(*pfnGetTimesTutorMessageShown)			(int mid);
+// 155:	int			(*pfnGetTimesTutorMessageShown)			(int mid);
 
 // 156:	void		(*pfnQueryClientCvarValue)		( const edict_t *player, const char *cvarName );
 // 157:	void		(*pfnQueryClientCvarValue2)             ( const edict_t *player, const char *cvarName, int requestID );

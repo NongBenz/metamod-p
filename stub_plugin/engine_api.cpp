@@ -236,16 +236,11 @@ enginefuncs_t meta_engfuncs =
 	NULL,						// pfnGetLocalizedStringLength()
 	NULL,						// pfnRegisterTutorMessageShown()
 	NULL,						// pfnGetTimesTutorMessageShown()
-	NULL,						// pfnProcessTutorMessageDecayBuffer()
-	NULL,						// pfnConstructTutorMessageDecayBuffer()
-	NULL,						// pfnResetTutorMessageDecayData()
 
 	// Added Added 2005-08-11 (no SDK update)
 	NULL,						// pfnQueryClientCvarValue()
 	// Added Added 2005-11-22 (no SDK update)
-	NULL,						// pfnQueryClientCvarValue2()
-	// Added 2009-06-17 (no SDK update)
-	NULL,						// pfnEngCheckParm()
+	NULL						// pfnQueryClientCvarValue2()
 };
 
 C_DLLEXPORT int GetEngineFunctions(enginefuncs_t *pengfuncsFromEngine, 

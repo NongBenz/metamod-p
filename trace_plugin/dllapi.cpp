@@ -207,7 +207,7 @@ void PM_Init( struct playermove_s *ppmove ) {
 	DLL_TRACE(pfnPM_Init, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
-char PM_FindTextureType( char *name ) {
+char PM_FindTextureType( const char *name ) {
 	DLL_TRACE(pfnPM_FindTextureType, P_PRE, ("name=%s", name));
 	RETURN_META_VALUE(MRES_IGNORED, '\0');
 }
@@ -225,7 +225,7 @@ int AddToFullPack( struct entity_state_s *state, int e, edict_t *ent, edict_t *h
 	DLL_TRACE(pfnAddToFullPack, P_PRE, (""));
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
-void CreateBaseline( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, vec3_t player_mins, vec3_t player_maxs ) {
+void CreateBaseline( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, Vector* player_mins, Vector* player_maxs ) {
 	DLL_TRACE(pfnCreateBaseline, P_PRE, (""));
 	RETURN_META(MRES_IGNORED);
 }
