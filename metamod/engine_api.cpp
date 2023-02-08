@@ -121,11 +121,11 @@
 	CLEAN_FORMATED_STRING()
 
 
-static int mm_PrecacheModel(char *s) {
+static int mm_PrecacheModel(const char *s) {
 	META_ENGINE_HANDLE(int, 0, FN_PRECACHEMODEL, pfnPrecacheModel, p, (s));
 	RETURN_API(int)
 }
-static int mm_PrecacheSound(char *s) {
+static int mm_PrecacheSound(const char *s) {
 	META_ENGINE_HANDLE(int, 0, FN_PRECACHESOUND, pfnPrecacheSound, p, (s));
 	RETURN_API(int)
 }
@@ -146,7 +146,7 @@ static void mm_SetSize(edict_t *e, const float *rgflMin, const float *rgflMax) {
 	META_ENGINE_HANDLE_void(FN_SETSIZE, pfnSetSize, 3p, (e, rgflMin, rgflMax));
 	RETURN_API_void()
 }
-static void mm_ChangeLevel(char *s1, char *s2) {
+static void mm_ChangeLevel(const char *s1, const char *s2) {
 	META_ENGINE_HANDLE_void(FN_CHANGELEVEL, pfnChangeLevel, 2p, (s1, s2));
 	RETURN_API_void()
 }
@@ -287,7 +287,7 @@ static void mm_GetAimVector(edict_t *ent, float speed, float *rgflReturn) {
 	RETURN_API_void()
 }
 
-static void mm_ServerCommand(char *str) {
+static void mm_ServerCommand(const char *str) {
 	META_ENGINE_HANDLE_void(FN_SERVERCOMMAND, pfnServerCommand, p, (str));
 	RETURN_API_void()
 }
@@ -295,7 +295,7 @@ static void mm_ServerExecute(void) {
 	META_ENGINE_HANDLE_void(FN_SERVEREXECUTE, pfnServerExecute, void, (VOID_ARG));
 	RETURN_API_void()
 }
-static void mm_engClientCommand(edict_t *pEdict, char *szFmt, ...) {
+static void mm_engClientCommand(edict_t *pEdict, const char *szFmt, ...) {
 	META_ENGINE_HANDLE_void_varargs(FN_CLIENTCOMMAND_ENG, pfnClientCommand, 2pV, pEdict, szFmt);
 	RETURN_API_void()
 }
@@ -304,7 +304,7 @@ static void mm_ParticleEffect(const float *org, const float *dir, float color, f
 	META_ENGINE_HANDLE_void(FN_PARTICLEEFFECT, pfnParticleEffect, 2p2f, (org, dir, color, count));
 	RETURN_API_void()
 }
-static void mm_LightStyle(int style, char *val) {
+static void mm_LightStyle(int style, const char *val) {
 	META_ENGINE_HANDLE_void(FN_LIGHTSTYLE, pfnLightStyle, ip, (style, val));
 	RETURN_API_void()
 }
@@ -386,14 +386,14 @@ static void mm_CVarSetString(const char *szVarName, const char *szValue) {
 	RETURN_API_void()
 }
 
-static void mm_AlertMessage(ALERT_TYPE atype, char *szFmt, ...) {
+static void mm_AlertMessage(ALERT_TYPE atype, const char *szFmt, ...) {
 	META_ENGINE_HANDLE_void_varargs(FN_ALERTMESSAGE, pfnAlertMessage, ipV, atype, szFmt);
 	RETURN_API_void()
 }
 #ifdef HLSDK_3_2_OLD_EIFACE
-static void mm_EngineFprintf(FILE *pfile, char *szFmt, ...) {
+static void mm_EngineFprintf(FILE *pfile, const char *szFmt, ...) {
 #else
-static void mm_EngineFprintf(void *pfile, char *szFmt, ...) {
+static void mm_EngineFprintf(void *pfile, const char *szFmt, ...) {
 #endif
 	META_ENGINE_HANDLE_void_varargs(FN_ENGINEFPRINTF, pfnEngineFprintf, 2pV, pfile, szFmt);
 	RETURN_API_void()
@@ -582,7 +582,7 @@ static void mm_CrosshairAngle(const edict_t *pClient, float pitch, float yaw) {
 	RETURN_API_void()
 }
 
-static byte * mm_LoadFileForMe(char *filename, int *pLength) {
+static byte * mm_LoadFileForMe(const char *filename, int *pLength) {
 	META_ENGINE_HANDLE(byte *, NULL, FN_LOADFILEFORME, pfnLoadFileForMe, 2p, (filename, pLength));
 	RETURN_API(byte *)
 }
@@ -596,7 +596,7 @@ static void mm_EndSection(const char *pszSectionName) {
 	META_ENGINE_HANDLE_void(FN_ENDSECTION, pfnEndSection, p, (pszSectionName));
 	RETURN_API_void()
 }
-static int mm_CompareFileTime(char *filename1, char *filename2, int *iCompare) {
+static int mm_CompareFileTime(const char *filename1, const char *filename2, int *iCompare) {
 	META_ENGINE_HANDLE(int, 0, FN_COMPAREFILETIME, pfnCompareFileTime, 3p, (filename1, filename2, iCompare));
 	RETURN_API(int)
 }
@@ -635,20 +635,20 @@ static char *mm_GetInfoKeyBuffer(edict_t *e) {
 	META_ENGINE_HANDLE(char *, NULL, FN_GETINFOKEYBUFFER, pfnGetInfoKeyBuffer, p, (e));
 	RETURN_API(char *)
 }
-static char *mm_InfoKeyValue(char *infobuffer, char *key) {
+static char *mm_InfoKeyValue(char *infobuffer, const char *key) {
 	META_ENGINE_HANDLE(char *, NULL, FN_INFOKEYVALUE, pfnInfoKeyValue, 2p, (infobuffer, key));
 	RETURN_API(char *)
 }
-static void mm_SetKeyValue(char *infobuffer, char *key, char *value) {
+static void mm_SetKeyValue(char *infobuffer, const char *key, const char *value) {
 	META_ENGINE_HANDLE_void(FN_SETKEYVALUE, pfnSetKeyValue, 3p, (infobuffer, key, value));
 	RETURN_API_void()
 }
-static void mm_SetClientKeyValue(int clientIndex, char *infobuffer, char *key, char *value) {
+static void mm_SetClientKeyValue(int clientIndex, char *infobuffer, const char *key, const char *value) {
 	META_ENGINE_HANDLE_void(FN_SETCLIENTKEYVALUE, pfnSetClientKeyValue, i3p, (clientIndex, infobuffer, key, value));
 	RETURN_API_void()
 }
 
-static int mm_IsMapValid(char *filename) {
+static int mm_IsMapValid(const char *filename) {
 	META_ENGINE_HANDLE(int, 0, FN_ISMAPVALID, pfnIsMapValid, p, (filename));
 	RETURN_API(int)
 }
@@ -656,7 +656,7 @@ static void mm_StaticDecal( const float *origin, int decalIndex, int entityIndex
 	META_ENGINE_HANDLE_void(FN_STATICDECAL, pfnStaticDecal, p3i, (origin, decalIndex, entityIndex, modelIndex));
 	RETURN_API_void()
 }
-static int mm_PrecacheGeneric(char *s) {
+static int mm_PrecacheGeneric(const char *s) {
 	META_ENGINE_HANDLE(int, 0, FN_PRECACHEGENERIC, pfnPrecacheGeneric, p, (s));
 	RETURN_API(int)
 }
@@ -706,7 +706,7 @@ static unsigned short mm_PrecacheEvent( int type, const char *psz ) {
 	META_ENGINE_HANDLE(unsigned short, 0, FN_PRECACHEEVENT, pfnPrecacheEvent, ip, (type, psz));
 	RETURN_API(unsigned short)
 }
-static void mm_PlaybackEvent( int flags, const edict_t *pInvoker, unsigned short eventindex, float delay, float *origin, float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 ) {
+static void mm_PlaybackEvent( int flags, const edict_t *pInvoker, unsigned short eventindex, float delay, const float *origin, const float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 ) {
 	META_ENGINE_HANDLE_void(FN_PLAYBACKEVENT, pfnPlaybackEvent, ipusf2p2f4i, (flags, pInvoker, eventindex, delay, origin, angles, fparam1, fparam2, iparam1, iparam2, bparam1, bparam2));
 	RETURN_API_void()
 }
@@ -733,7 +733,7 @@ static void mm_DeltaUnsetField( struct delta_s *pFields, const char *fieldname )
 	META_ENGINE_HANDLE_void(FN_DELTAUNSETFIELD, pfnDeltaUnsetField, 2p, (pFields, fieldname));
 	RETURN_API_void()
 }
-static void mm_DeltaAddEncoder( char *name, void (*conditionalencode)( struct delta_s *pFields, const unsigned char *from, const unsigned char *to ) ) {
+static void mm_DeltaAddEncoder( const char *name, void (*conditionalencode)( struct delta_s *pFields, const unsigned char *from, const unsigned char *to ) ) {
 	META_ENGINE_HANDLE_void(FN_DELTAADDENCODER, pfnDeltaAddEncoder, 2p, (name, (void*)conditionalencode));
 	RETURN_API_void()
 }
@@ -767,7 +767,7 @@ static int mm_engCreateInstancedBaseline( int classname, struct entity_state_s *
 	META_ENGINE_HANDLE(int, 0, FN_CREATEINSTANCEDBASELINE, pfnCreateInstancedBaseline, ip, (classname, baseline));
 	RETURN_API(int)
 }
-static void mm_Cvar_DirectSet( struct cvar_s *var, char *value ) {
+static void mm_Cvar_DirectSet( struct cvar_s *var, const char *value ) {
 	META_ENGINE_HANDLE_void(FN_CVAR_DIRECTSET, pfnCvar_DirectSet, 2p, (var, value));
 
 	meta_debug_value = (int)meta_debug.value;
@@ -788,7 +788,7 @@ static void mm_GetPlayerStats( const edict_t *pClient, int *ping, int *packet_lo
 	RETURN_API_void()
 }
 
-static void mm_AddServerCommand( char *cmd_name, void (*function) (void) ) {
+static void mm_AddServerCommand( const char *cmd_name, void (*function) (void) ) {
 	META_ENGINE_HANDLE_void(FN_ADDSERVERCOMMAND, pfnAddServerCommand, 2p, (cmd_name, (void*)function));
 	RETURN_API_void()
 }
@@ -825,7 +825,7 @@ static sentenceEntry_s *mm_SequencePickSentence(const char *groupName, int pickM
 	RETURN_API(sentenceEntry_s *)
 }
 
-static int mm_GetFileSize(char *filename) {
+static int mm_GetFileSize(const char *filename) {
 	META_ENGINE_HANDLE(int, 0, FN_GETFILESIZE, pfnGetFileSize, p, (filename));
 	RETURN_API(int)
 }
@@ -853,21 +853,6 @@ static void mm_RegisterTutorMessageShown(int mid) {
 static int mm_GetTimesTutorMessageShown(int mid) {
 	META_ENGINE_HANDLE(int, 0, FN_GETTIMESTUTORMESSAGESHOWN, pfnGetTimesTutorMessageShown, i, (mid));
 	RETURN_API(int)
-}
-
-static void mm_ProcessTutorMessageDecayBuffer(int *buffer, int bufferLength) {
-	META_ENGINE_HANDLE_void(FN_PROCESSTUTORMESSAGEDECAYBUFFER, pfnProcessTutorMessageDecayBuffer, pi, (buffer, bufferLength));
-	RETURN_API_void()
-}
-
-static void mm_ConstructTutorMessageDecayBuffer(int *buffer, int bufferLength) {
-	META_ENGINE_HANDLE_void(FN_CONSTRUCTTUTORMESSAGEDECAYBUFFER, pfnConstructTutorMessageDecayBuffer, pi, (buffer, bufferLength));
-	RETURN_API_void()
-}
-
-static void mm_ResetTutorMessageDecayData(void) {
-	META_ENGINE_HANDLE_void(FN_RESETTUTORMESSAGEDECAYDATA, pfnResetTutorMessageDecayData, void, (VOID_ARG));
-	RETURN_API_void()
 }
 
 // Added 2005/08/11 (no SDK update):
@@ -900,62 +885,38 @@ static void mm_QueryClientCvarValue2(const edict_t *player, const char *cvarName
 	RETURN_API_void()
 }
 
-// Added 2009/06/19 (no SDK update):
-static int mm_EngCheckParm(const char *pchCmdLineToken, char **pchNextVal) {
-	static mBOOL s_check = mFALSE;
-
-	//Engine version didn't change when this API was added.  Check if the pointer is valid.
-	if (!s_check && g_engfuncs.pfnEngCheckParm &&
-	     !IS_VALID_PTR((void * )g_engfuncs.pfnEngCheckParm)) {
-		g_engfuncs.pfnEngCheckParm = NULL;
-		s_check = mTRUE;
-	}
-
-	META_ENGINE_HANDLE(int, 0, FN_ENGCHECKPARM, pfnEngCheckParm, 2p, (pchCmdLineToken, pchNextVal));
-	RETURN_API(int)
-}
-
 meta_enginefuncs_t meta_engfuncs (
 	&mm_PrecacheModel,			// pfnPrecacheModel()
 	&mm_PrecacheSound,			// pfnPrecacheSound()
 	&mm_SetModel,				// pfnSetModel()
 	&mm_ModelIndex,				// pfnModelIndex()
 	&mm_ModelFrames,			// pfnModelFrames()
-
 	&mm_SetSize,				// pfnSetSize()
 	&mm_ChangeLevel,			// pfnChangeLevel()
 	&mm_GetSpawnParms,			// pfnGetSpawnParms()
 	&mm_SaveSpawnParms,			// pfnSaveSpawnParms()
-
 	&mm_VecToYaw,				// pfnVecToYaw()
 	&mm_VecToAngles,			// pfnVecToAngles()
 	&mm_MoveToOrigin,			// pfnMoveToOrigin()
 	&mm_ChangeYaw,				// pfnChangeYaw()
 	&mm_ChangePitch,			// pfnChangePitch()
-
 	&mm_FindEntityByString,		// pfnFindEntityByString()
 	&mm_GetEntityIllum,			// pfnGetEntityIllum()
 	&mm_FindEntityInSphere,		// pfnFindEntityInSphere()
 	&mm_FindClientInPVS,		// pfnFindClientInPVS()
 	&mm_EntitiesInPVS,			// pfnEntitiesInPVS()
-
 	&mm_MakeVectors,			// pfnMakeVectors()
 	&mm_AngleVectors,			// pfnAngleVectors()
-
 	&mm_CreateEntity,			// pfnCreateEntity()
 	&mm_RemoveEntity,			// pfnRemoveEntity()
 	&mm_CreateNamedEntity,		// pfnCreateNamedEntity()
-
 	&mm_MakeStatic,				// pfnMakeStatic()
 	&mm_EntIsOnFloor,			// pfnEntIsOnFloor()
 	&mm_DropToFloor,			// pfnDropToFloor()
-
 	&mm_WalkMove,				// pfnWalkMove()
 	&mm_SetOrigin,				// pfnSetOrigin()
-
 	&mm_EmitSound,				// pfnEmitSound()
 	&mm_EmitAmbientSound,		// pfnEmitAmbientSound()
-
 	&mm_TraceLine,				// pfnTraceLine()
 	&mm_TraceToss,				// pfnTraceToss()
 	&mm_TraceMonsterHull,		// pfnTraceMonsterHull()
@@ -964,19 +925,15 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_TraceTexture,			// pfnTraceTexture()
 	&mm_TraceSphere,			// pfnTraceSphere()
 	&mm_GetAimVector,			// pfnGetAimVector()
-
 	&mm_ServerCommand,			// pfnServerCommand()
 	&mm_ServerExecute,			// pfnServerExecute()
 	&mm_engClientCommand,		// pfnClientCommand()	// D'oh, ClientCommand in dllapi too.
-
 	&mm_ParticleEffect,			// pfnParticleEffect()
 	&mm_LightStyle,				// pfnLightStyle()
 	&mm_DecalIndex,				// pfnDecalIndex()
 	&mm_PointContents,			// pfnPointContents()
-
 	&mm_MessageBegin,			// pfnMessageBegin()
 	&mm_MessageEnd,				// pfnMessageEnd()
-
 	&mm_WriteByte,				// pfnWriteByte()
 	&mm_WriteChar,				// pfnWriteChar()
 	&mm_WriteShort,				// pfnWriteShort()
@@ -985,23 +942,18 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_WriteCoord,				// pfnWriteCoord()
 	&mm_WriteString,			// pfnWriteString()
 	&mm_WriteEntity,			// pfnWriteEntity()
-
 	&mm_CVarRegister,			// pfnCVarRegister()
 	&mm_CVarGetFloat,			// pfnCVarGetFloat()
 	&mm_CVarGetString,			// pfnCVarGetString()
 	&mm_CVarSetFloat,			// pfnCVarSetFloat()
 	&mm_CVarSetString,			// pfnCVarSetString()
-
 	&mm_AlertMessage,			// pfnAlertMessage()
 	&mm_EngineFprintf,			// pfnEngineFprintf()
-
 	&mm_PvAllocEntPrivateData,	// pfnPvAllocEntPrivateData()
 	&mm_PvEntPrivateData,		// pfnPvEntPrivateData()
 	&mm_FreeEntPrivateData,		// pfnFreeEntPrivateData()
-
 	&mm_SzFromIndex,			// pfnSzFromIndex()
 	&mm_AllocString,			// pfnAllocString()
-
 	&mm_GetVarsOfEnt, 			// pfnGetVarsOfEnt()
 	&mm_PEntityOfEntOffset,		// pfnPEntityOfEntOffset()
 	&mm_EntOffsetOfPEntity,		// pfnEntOffsetOfPEntity()
@@ -1009,39 +961,28 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_PEntityOfEntIndex,		// pfnPEntityOfEntIndex()
 	&mm_FindEntityByVars,		// pfnFindEntityByVars()
 	&mm_GetModelPtr,			// pfnGetModelPtr()
-
 	&mm_RegUserMsg,				// pfnRegUserMsg()
-
 	&mm_AnimationAutomove,		// pfnAnimationAutomove()
 	&mm_GetBonePosition,		// pfnGetBonePosition()
-
 	&mm_FunctionFromName,		// pfnFunctionFromName()
 	&mm_NameForFunction,		// pfnNameForFunction()
-
 	&mm_ClientPrintf,			// pfnClientPrintf()			//! JOHN: engine callbacks so game DLL can print messages to individual clients
 	&mm_ServerPrint,			// pfnServerPrint()
-
 	&mm_Cmd_Args,				// pfnCmd_Args()				//! these 3 added 
 	&mm_Cmd_Argv,				// pfnCmd_Argv()				//! so game DLL can easily 
 	&mm_Cmd_Argc,				// pfnCmd_Argc()				//! access client 'cmd' strings
-
 	&mm_GetAttachment,			// pfnGetAttachment()
-
 	&mm_CRC32_Init,				// pfnCRC32_Init()
 	&mm_CRC32_ProcessBuffer,	// pfnCRC32_ProcessBuffer()
 	&mm_CRC32_ProcessByte,		// pfnCRC32_ProcessByte()
 	&mm_CRC32_Final,			// pfnCRC32_Final()
-
 	&mm_RandomLong,				// pfnRandomLong()
 	&mm_RandomFloat,			// pfnRandomFloat()
-
 	&mm_SetView,				// pfnSetView()
 	&mm_Time,					// pfnTime()
 	&mm_CrosshairAngle,			// pfnCrosshairAngle()
-
 	&mm_LoadFileForMe,			// pfnLoadFileForMe()
 	&mm_FreeFile,				// pfnFreeFile()
-
 	&mm_EndSection,				// pfnEndSection()				//! trigger_endsection
 	&mm_CompareFileTime,		// pfnCompareFileTime()
 	&mm_GetGameDir,				// pfnGetGameDir()
@@ -1051,12 +992,10 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_CreateFakeClient,		// pfnCreateFakeClient() 		//! returns NULL if fake client can't be created
 	&mm_RunPlayerMove,			// pfnRunPlayerMove()
 	&mm_NumberOfEntities,		// pfnNumberOfEntities()
-
 	&mm_GetInfoKeyBuffer,		// pfnGetInfoKeyBuffer()		//! passing in NULL gets the serverinfo
 	&mm_InfoKeyValue,			// pfnInfoKeyValue()
 	&mm_SetKeyValue,			// pfnSetKeyValue()
 	&mm_SetClientKeyValue,		// pfnSetClientKeyValue()
-
 	&mm_IsMapValid,				// pfnIsMapValid()
 	&mm_StaticDecal,			// pfnStaticDecal()
 	&mm_PrecacheGeneric,		// pfnPrecacheGeneric()
@@ -1065,20 +1004,15 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_IsDedicatedServer,		// pfnIsDedicatedServer()		//! is this a dedicated server?
 	&mm_CVarGetPointer,			// pfnCVarGetPointer()
 	&mm_GetPlayerWONId,			// pfnGetPlayerWONId()			//! returns the server assigned WONid for this player.
-
-	//! YWB 8/1/99 TFF Physics additions
 	&mm_Info_RemoveKey,			// pfnInfo_RemoveKey()
 	&mm_GetPhysicsKeyValue,		// pfnGetPhysicsKeyValue()
 	&mm_SetPhysicsKeyValue,		// pfnSetPhysicsKeyValue()
 	&mm_GetPhysicsInfoString,	// pfnGetPhysicsInfoString()
 	&mm_PrecacheEvent,			// pfnPrecacheEvent()
 	&mm_PlaybackEvent,			// pfnPlaybackEvent()
-
 	&mm_SetFatPVS,				// pfnSetFatPVS()
 	&mm_SetFatPAS,				// pfnSetFatPAS()
-
 	&mm_CheckVisibility,		// pfnCheckVisibility()
-
 	&mm_DeltaSetField,			// pfnDeltaSetField()
 	&mm_DeltaUnsetField,		// pfnDeltaUnsetField()
 	&mm_DeltaAddEncoder,		// pfnDeltaAddEncoder()
@@ -1087,26 +1021,15 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_DeltaFindField,			// pfnDeltaFindField()
 	&mm_DeltaSetFieldByIndex,	// pfnDeltaSetFieldByIndex()
 	&mm_DeltaUnsetFieldByIndex,	// pfnDeltaUnsetFieldByIndex()
-
 	&mm_SetGroupMask,			// pfnSetGroupMask()
-
 	&mm_engCreateInstancedBaseline, // pfnCreateInstancedBaseline()		// D'oh, CreateInstancedBaseline in dllapi too.
 	&mm_Cvar_DirectSet,			// pfnCvar_DirectSet()
-
 	&mm_ForceUnmodified,		// pfnForceUnmodified()
-
 	&mm_GetPlayerStats,			// pfnGetPlayerStats()
-
 	&mm_AddServerCommand,		// pfnAddServerCommand()
-
-	// Added in SDK 2l2:
 	&mm_Voice_GetClientListening,	// pfnVoice_GetClientListening()
 	&mm_Voice_SetClientListening,	// pfnVoice_SetClientListening()
-
-	// Added for HL 1109 (no SDK update):
 	&mm_GetPlayerAuthId,			// pfnGetPlayerAuthId()
-
-	// Added 2003/11/10 (no SDK update):
 	&mm_SequenceGet,					// pfnSequenceGet()
 	&mm_SequencePickSentence,			// pfnSequencePickSentence()
 	&mm_GetFileSize,					// pfnGetFileSize()
@@ -1115,16 +1038,6 @@ meta_enginefuncs_t meta_engfuncs (
 	&mm_GetLocalizedStringLength,		// pfnGetLocalizedStringLength()
 	&mm_RegisterTutorMessageShown,	// pfnRegisterTutorMessageShown()
 	&mm_GetTimesTutorMessageShown,	// pfnGetTimesTutorMessageShown()
-	&mm_ProcessTutorMessageDecayBuffer,	// pfnProcessTutorMessageDecayBuffer()
-	&mm_ConstructTutorMessageDecayBuffer,	// pfnConstructTutorMessageDecayBuffer()
-	&mm_ResetTutorMessageDecayData,		// pfnResetTutorMessageDecayData()
-	
-	// Added 2005/08/11 (no SDK update):
 	&mm_QueryClientCvarValue,		// pfnQueryClientCvarValue()
-	
-	// Added 2005/11/21 (no SDK update):
-	&mm_QueryClientCvarValue2,		// pfnQueryClientCvarValue2()
-
-	// Added 2009/06/17 (no SDK update):
-	&mm_EngCheckParm			// pfnEngCheckParm()
+	&mm_QueryClientCvarValue2		// pfnQueryClientCvarValue2()
 );

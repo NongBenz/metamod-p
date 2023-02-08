@@ -119,12 +119,12 @@ typedef float (*FN_CVARGETFLOAT) (const char *szVarName);
 typedef const char * (*FN_CVARGETSTRING) (const char *szVarName);
 typedef void (*FN_CVARSETFLOAT) (const char *szVarName, float flValue);
 typedef void (*FN_CVARSETSTRING) (const char *szVarName, const char *szValue);
-typedef void (*FN_ALERTMESSAGE) (ALERT_TYPE atype, char *szFmt, ...);
+typedef void (*FN_ALERTMESSAGE) (ALERT_TYPE atype, const char *szFmt, ...);
 #ifdef HLSDK_3_2_OLD_EIFACE
-typedef void (*FN_ENGINEFPRINTF) (FILE *pfile, char *szFmt, ...);
+typedef void (*FN_ENGINEFPRINTF) (FILE *pfile, const char *szFmt, ...);
 typedef void * (*FN_PVALLOCENTPRIVATEDATA) (edict_t *pEdict, long cb);
 #else
-typedef void (*FN_ENGINEFPRINTF) (void *pfile, char *szFmt, ...);
+typedef void (*FN_ENGINEFPRINTF) (void *pfile, const char *szFmt, ...);
 typedef void * (*FN_PVALLOCENTPRIVATEDATA) (edict_t *pEdict, int32 cb);
 #endif
 typedef void * (*FN_PVENTPRIVATEDATA) (edict_t *pEdict);
@@ -170,7 +170,7 @@ typedef void (*FN_CROSSHAIRANGLE) (const edict_t *pClient, float pitch, float ya
 typedef byte * (*FN_LOADFILEFORME) (char *filename, int *pLength);
 typedef void (*FN_FREEFILE) (void *buffer);
 typedef void (*FN_ENDSECTION) (const char *pszSectionName);
-typedef int (*FN_COMPAREFILETIME) (char *filename1, char *filename2, int *iCompare);
+typedef int (*FN_COMPAREFILETIME) (const char *filename1, const char *filename2, int *iCompare);
 typedef void (*FN_GETGAMEDIR) (char *szGetGameDir);
 typedef void (*FN_CVAR_REGISTERVARIABLE) (cvar_t *variable);
 typedef void (*FN_FADECLIENTVOLUME) (const edict_t *pEdict, int fadePercent, int fadeOutSeconds, int holdTime, int fadeInSeconds);
@@ -179,10 +179,10 @@ typedef edict_t * (*FN_CREATEFAKECLIENT) (const char *netname);
 typedef void (*FN_RUNPLAYERMOVE) (edict_t *fakeclient, const float *viewangles, float forwardmove, float sidemove, float upmove, unsigned short buttons, byte impulse, byte msec );
 typedef int (*FN_NUMBEROFENTITIES) (void);
 typedef char * (*FN_GETINFOKEYBUFFER) (edict_t *e);
-typedef char * (*FN_INFOKEYVALUE) (char *infobuffer, char *key);
-typedef void (*FN_SETKEYVALUE) (char *infobuffer, char *key, char *value);
-typedef void (*FN_SETCLIENTKEYVALUE) (int clientIndex, char *infobuffer, char *key, char *value);
-typedef int (*FN_ISMAPVALID) (char *filename);
+typedef char * (*FN_INFOKEYVALUE) (char *infobuffer, const char *key);
+typedef void (*FN_SETKEYVALUE) (char *infobuffer, const char *key, const char *value);
+typedef void (*FN_SETCLIENTKEYVALUE) (int clientIndex, char *infobuffer, const char *key, const char *value);
+typedef int (*FN_ISMAPVALID) (const char *filename);
 typedef void (*FN_STATICDECAL) ( const float *origin, int decalIndex, int entityIndex, int modelIndex );
 typedef int (*FN_PRECACHEGENERIC) (char *s);
 typedef int (*FN_GETPLAYERUSERID) (edict_t *e );
@@ -195,7 +195,7 @@ typedef const char * (*FN_GETPHYSICSKEYVALUE) ( const edict_t *pClient, const ch
 typedef void (*FN_SETPHYSICSKEYVALUE) ( const edict_t *pClient, const char *key, const char *value );
 typedef const char * (*FN_GETPHYSICSINFOSTRING) ( const edict_t *pClient );
 typedef unsigned short (*FN_PRECACHEEVENT) ( int type, const char *psz );
-typedef void (*FN_PLAYBACKEVENT) ( int flags, const edict_t *pInvoker, unsigned short eventindex, float delay, float *origin, float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 );
+typedef void (*FN_PLAYBACKEVENT) ( int flags, const edict_t *pInvoker, unsigned short eventindex, float delay, const float *origin, const float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 );
 typedef unsigned char * (*FN_SETFATPVS) ( float *org );
 typedef unsigned char * (*FN_SETFATPAS) ( float *org );
 typedef int (*FN_CHECKVISIBILITY) ( const edict_t *entity, unsigned char *pset );
@@ -209,10 +209,10 @@ typedef void (*FN_DELTASETFIELDBYINDEX) ( struct delta_s *pFields, int fieldNumb
 typedef void (*FN_DELTAUNSETFIELDBYINDEX) ( struct delta_s *pFields, int fieldNumber );
 typedef void (*FN_SETGROUPMASK) ( int mask, int op );
 typedef int (*FN_CREATEINSTANCEDBASELINE) ( int classname, struct entity_state_s *baseline );
-typedef void (*FN_CVAR_DIRECTSET) ( struct cvar_s *var, char *value );
+typedef void (*FN_CVAR_DIRECTSET) ( struct cvar_s *var, const char *value );
 typedef void (*FN_FORCEUNMODIFIED) ( FORCE_TYPE type, float *mins, float *maxs, const char *filename );
 typedef void (*FN_GETPLAYERSTATS) ( const edict_t *pClient, int *ping, int *packet_loss );
-typedef void (*FN_ADDSERVERCOMMAND) ( char *cmd_name, void (*function) (void) );
+typedef void (*FN_ADDSERVERCOMMAND) ( const char *cmd_name, void (*function) (void) );
 // Added in SDK 2.2:
 typedef qboolean (*FN_VOICE_GETCLIENTLISTENING) (int iReceiver, int iSender);
 typedef qboolean (*FN_VOICE_SETCLIENTLISTENING) (int iReceiver, int iSender, qboolean bListen);
@@ -227,14 +227,9 @@ typedef int (*FN_ISCAREERMATCH) (void);
 typedef int (*FN_GETLOCALIZEDSTRINGLENGTH) (const char *label);
 typedef void (*FN_REGISTERTUTORMESSAGESHOWN) (int mid);
 typedef int (*FN_GETTIMESTUTORMESSAGESHOWN) (int mid);
-typedef void (*FN_PROCESSTUTORMESSAGEDECAYBUFFER) (int *buffer, int bufferLength);
-typedef void (*FN_CONSTRUCTTUTORMESSAGEDECAYBUFFER) (int *buffer, int bufferLength);
-typedef void (*FN_RESETTUTORMESSAGEDECAYDATA) (void);
 // Added 2005/08/11 (no SDK update):
 typedef void (*FN_QUERYCLIENTCVARVALUE) ( const edict_t *player, const char *cvarName );
 // Added 2005/11/21 (no SDK update):
 typedef void (*FN_QUERYCLIENTCVARVALUE2) ( const edict_t *player, const char *cvarName, int requestID );
-// Added 2009/06/17 (no SDK update):
-typedef void (*FN_ENGCHECKPARM) ( const char *pchCmdLineToken, char **pchNextVal );
 
 #endif /* ENGINE_API_H */

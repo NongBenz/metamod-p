@@ -255,7 +255,7 @@ static void mm_PM_Init(struct playermove_s *ppmove) {
 	META_DLLAPI_HANDLE_void(FN_PM_INIT, pfnPM_Init, p, (ppmove));
 	RETURN_API_void();
 }
-static char mm_PM_FindTextureType(char *name) {
+static char mm_PM_FindTextureType(const char *name) {
 	META_DLLAPI_HANDLE(char, '\0', FN_PM_FINDTEXTURETYPE, pfnPM_FindTextureType, p, (name));
 	RETURN_API(char);
 }
@@ -273,7 +273,7 @@ static int mm_AddToFullPack(struct entity_state_s *state, int e, edict_t *ent, e
 	META_DLLAPI_HANDLE(int, 0, FN_ADDTOFULLPACK, pfnAddToFullPack, pi2p2ip, (state, e, ent, host, hostflags, player, pSet));
 	RETURN_API(int);
 }
-static void mm_CreateBaseline(int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, vec3_t player_mins, vec3_t player_maxs) {
+static void mm_CreateBaseline(int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, Vector* player_mins, Vector* player_maxs) {
 	META_DLLAPI_HANDLE_void(FN_CREATEBASELINE, pfnCreateBaseline, 2i2pi2p, (player, eindex, baseline, entity, playermodelindex, (float*)player_mins, (float*)player_maxs));
 	RETURN_API_void();
 }

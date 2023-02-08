@@ -94,7 +94,7 @@ int metamod_not_loaded = 0;
 // Very first metamod function that's run.
 // Do startup operations...
 int DLLINTERNAL metamod_startup(void) {	
-	char *cp, *mmfile=NULL, *cfile=NULL;
+	const char *cp, *mmfile=NULL, *cfile=NULL;
 
 	META_CONS("   ");
 	META_CONS("   %s version %s Copyright (c) 2001-%s %s", VNAME, VVERSION, COPYRIGHT_YEAR, VAUTHOR);

@@ -74,8 +74,8 @@ void _fini(void) {
 #endif
 
 //! Holds engine functionality callbacks
-HL_enginefuncs_t g_engfuncs;
-globalvars_t  *gpGlobals;
+//HL_enginefuncs_t g_engfuncs;
+//globalvars_t  *gpGlobals;
 engine_t Engine;
 
 // Receive engine function table from engine.

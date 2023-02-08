@@ -94,12 +94,12 @@ typedef void (*FN_SYS_ERROR) ( const char *error_string );
 
 typedef void (*FN_PM_MOVE) ( struct playermove_s *ppmove, int server );
 typedef void (*FN_PM_INIT) ( struct playermove_s *ppmove );
-typedef char (*FN_PM_FINDTEXTURETYPE) ( char *name );
+typedef char (*FN_PM_FINDTEXTURETYPE) ( const char *name );
 
 typedef void (*FN_SETUPVISIBILITY) ( edict_t *pViewEntity, edict_t *pClient, unsigned char **pvs, unsigned char **pas );
 typedef void (*FN_UPDATECLIENTDATA)  ( const struct edict_s *ent, int sendweapons, struct clientdata_s *cd );
 typedef int (*FN_ADDTOFULLPACK) ( struct entity_state_s *state, int e, edict_t *ent, edict_t *host, int hostflags, int player, unsigned char *pSet );
-typedef void (*FN_CREATEBASELINE) ( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, vec3_t player_mins, vec3_t player_maxs );
+typedef void (*FN_CREATEBASELINE) ( int player, int eindex, struct entity_state_s *baseline, struct edict_s *entity, int playermodelindex, Vector* player_mins, Vector* player_maxs );
 typedef void (*FN_REGISTERENCODERS) ( void );
 typedef int (*FN_GETWEAPONDATA) ( struct edict_s *player, struct weapon_data_s *info );
 typedef void (*FN_CMDSTART) ( const edict_t *player, const struct usercmd_s *cmd, unsigned int random_seed );

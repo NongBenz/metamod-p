@@ -291,15 +291,10 @@ typedef struct engine_info_s {
 	api_info_t pfnGetLocalizedStringLength;
 	api_info_t pfnRegisterTutorMessageShown;
 	api_info_t pfnGetTimesTutorMessageShown;
-	api_info_t pfnProcessTutorMessageDecayBuffer;
-	api_info_t pfnConstructTutorMessageDecayBuffer;
-	api_info_t pfnResetTutorMessageDecayData;
 	// Added 2005/08/11 (no SDK update):
 	api_info_t pfnQueryClientCvarValue;
 	// Added 2005/11/21 (no SDK update):
 	api_info_t pfnQueryClientCvarValue2;
-	// Added 2009/06/17 (no SDK update):
-	api_info_t pfnEngCheckParm;
 	// end
 	api_info_t END;
 } engine_info_t;

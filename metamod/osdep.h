@@ -133,6 +133,7 @@ extern mBOOL dlclose_handle_invalid DLLHIDDEN;
 		return(dlerror());
 	}
 #elif defined(_WIN32)
+#include <windows.h>
 	typedef HINSTANCE DLHANDLE;
 	typedef FARPROC DLFUNC;
 	inline DLHANDLE DLLINTERNAL DLOPEN(const char *filename) {
