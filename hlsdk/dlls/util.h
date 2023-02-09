@@ -326,7 +326,7 @@ void DBG_AssertFunction(BOOL fExpr, const char* szExpr, const char* szFile, int 
 #endif  // !DEBUG
 
 
-extern DLL_GLOBAL const Vector g_vecZero;
+extern DLL_GLOBAL constexpr Vector g_vecZero;
 
 //
 // Constants that were used only by QC (maybe not used at all now)
