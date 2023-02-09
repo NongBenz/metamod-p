@@ -72,13 +72,13 @@ endif
 
 ifeq "$(OS)" "linux"
 	INSTALL=install -m 644
-	LD_WINDLL= i686-w64-mingw32-dllwrap
+	LD_WINDLL= i686-w64-mingw32-dllwrap -Wl,-Bstatic
 	OSTARGET=linux
 	LIBFILE=$(LIBFILE_LINUX)
 	TARGET_FILE=$(TARGET_LINUX)
 else	## windows
 	INSTALL=cp
-	LD_WINDLL= dllwrap
+	LD_WINDLL= dllwrap -Wl,-Bstatic
 	OSTARGET=win32
 	LIBFILE=$(LIBFILE_WIN)
 	TARGET_FILE=$(TARGET_WIN)
@@ -278,10 +278,10 @@ TARGET_LINUX = $(OBJDIR_LINUX)/$(LIBFILE_LINUX)
 # windows .dll compile commands
 DO_CC_WIN=$(CC_WIN) $(CFLAGS) $(INCLUDEDIRS) -o $@ -c $<
 DO_RES_WIN=$(RES_WIN) '$(ODEF)' --include-dir . --include-dir ../metamod -i $< -O coff -o $@
-#LINK_WIN=$(LD_WINDLL) -k -mwindows --add-stdcall-alias --def metamod.def -o $@ $(OBJ_WIN)
-#LINK_WIN=$(LD_WINDLL) -A -k -mwindows --export-all-symbols -o $@ $(OBJ_WIN)
-#LINK_WIN=$(LD_WINDLL) -mwindows --add-stdcall-alias $(OBJ_WIN) $(RES_OBJ_WIN) -lstdc++ -s -o $@
-LINK_WIN=$(CC_WIN) $(CFLAGS) -mdll -Xlinker --add-stdcall-alias $(EXTRA_LINK) $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
+#LINK_WIN=$(LD_WINDLL) -k -mwindows --add-stdcall-alias --def metamod.def -o $@ $(OBJ_WIN) -lstdc++
+#LINK_WIN=$(LD_WINDLL) -A -k -mwindows --export-all-symbols -o $@ $(OBJ_WIN) -lstdc++
+LINK_WIN=$(LD_WINDLL) -mwindows --add-stdcall-alias $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
+#LINK_WIN=$(CC_WIN) $(CFLAGS) -mdll -Xlinker --add-stdcall-alias $(EXTRA_LINK) $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
 
 # windows object files
 OBJ_WIN := $(SRCFILES:%.cpp=$(OBJDIR_WIN)/%.o)
