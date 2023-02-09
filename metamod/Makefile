@@ -72,13 +72,13 @@ endif
 
 ifeq "$(OS)" "linux"
 	INSTALL=install -m 644
-	LD_WINDLL= i686-w64-mingw32-dllwrap -Wl,-Bstatic
+	LD_WINDLL= i686-w64-mingw32-gcc
 	OSTARGET=linux
 	LIBFILE=$(LIBFILE_LINUX)
 	TARGET_FILE=$(TARGET_LINUX)
 else	## windows
 	INSTALL=cp
-	LD_WINDLL= dllwrap -Wl,-Bstatic
+	LD_WINDLL= gcc
 	OSTARGET=win32
 	LIBFILE=$(LIBFILE_WIN)
 	TARGET_FILE=$(TARGET_WIN)
@@ -191,12 +191,12 @@ CCDEBUG+= -ggdb3
 #############################################################################
 
 SRCDIR=.
-INCLUDEDIRS+=-I$(SRCDIR) -I$(METADIR) -I$(SDKSRC)/engine -I$(SDKSRC)/common -I$(SDKSRC)/pm_shared -I$(SDKSRC)/dlls -I$(SDKSRC)/public -I$(SDKSRC)
+INCLUDEDIRS+=-I$(SRCDIR) -I$(METADIR) -I$(SDKSRC)/engine -I$(SDKSRC)/common -I$(SDKSRC)/pm_shared -I$(SDKSRC)/dlls -I$(SDKSRC)/public
 FILES_ALL = *.cpp *.h [A-Z]* *.rc
 
 CFLAGS=-Wall -Wno-unknown-pragmas -Wno-attributes -Wno-write-strings
 
-CFLAGS+=-std=c++20 -Wno-c++20-compat
+CFLAGS+=-std=gnu++20
 
 #CFLAGS += -DTEST
 
@@ -280,7 +280,7 @@ DO_CC_WIN=$(CC_WIN) $(CFLAGS) $(INCLUDEDIRS) -o $@ -c $<
 DO_RES_WIN=$(RES_WIN) '$(ODEF)' --include-dir . --include-dir ../metamod -i $< -O coff -o $@
 #LINK_WIN=$(LD_WINDLL) -k -mwindows --add-stdcall-alias --def metamod.def -o $@ $(OBJ_WIN) -lstdc++
 #LINK_WIN=$(LD_WINDLL) -A -k -mwindows --export-all-symbols -o $@ $(OBJ_WIN) -lstdc++
-LINK_WIN=$(LD_WINDLL) -mwindows --add-stdcall-alias $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
+LINK_WIN=$(LD_WINDLL) --shared -fPIC -static-libgcc -Wl,-mi386pe,-Bstatic,--add-stdcall-alias $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++ metamod.def
 #LINK_WIN=$(CC_WIN) $(CFLAGS) -mdll -Xlinker --add-stdcall-alias $(EXTRA_LINK) $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
 
 # windows object files

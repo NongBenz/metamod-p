@@ -70,7 +70,6 @@ void _fini(void) {
 // Fixed MSVC compiling, by Nikolay "The Storm" Baklicharov.
 #if defined(_WIN32) && !defined(__GNUC__) && defined (_MSC_VER)
 	#pragma comment(linker, "/EXPORT:GiveFnptrsToDll=_GiveFnptrsToDll@8,@1")
-	#pragma comment(linker, "/SECTION:.data,RW")
 #endif
 
 //! Holds engine functionality callbacks
