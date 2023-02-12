@@ -280,7 +280,7 @@ DO_CC_WIN=$(CC_WIN) $(CFLAGS) $(INCLUDEDIRS) -o $@ -c $<
 DO_RES_WIN=$(RES_WIN) '$(ODEF)' --include-dir . --include-dir ../metamod -i $< -O coff -o $@
 #LINK_WIN=$(LD_WINDLL) -k -mwindows --add-stdcall-alias --def metamod.def -o $@ $(OBJ_WIN) -lstdc++
 #LINK_WIN=$(LD_WINDLL) -A -k -mwindows --export-all-symbols -o $@ $(OBJ_WIN) -lstdc++
-LINK_WIN=$(LD_WINDLL) --shared -fPIC -static-libgcc -Wl,-mi386pe,-Bstatic,--add-stdcall-alias $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++ metamod.def
+LINK_WIN=$(LD_WINDLL) --shared -fPIC -static-libgcc -Wl,-mi386pe,-Bstatic,--kill-at $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++ metamod.def
 #LINK_WIN=$(CC_WIN) $(CFLAGS) -mdll -Xlinker --add-stdcall-alias $(EXTRA_LINK) $(OBJ_WIN) $(RES_OBJ_WIN) -s -o $@ -lstdc++
 
 # windows object files
