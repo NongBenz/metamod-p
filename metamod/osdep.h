@@ -42,7 +42,7 @@
 #include <errno.h>			// errno
 
 // Various differences between WIN32 and Linux.
-
+#include "PlatformHeaders.h"
 #include "comp_dep.h"
 #include "types_meta.h"		// mBOOL
 #include "mreg.h"			// REG_CMD_FN, etc
@@ -133,7 +133,6 @@ extern mBOOL dlclose_handle_invalid DLLHIDDEN;
 		return(dlerror());
 	}
 #elif defined(_WIN32)
-#include <windows.h>
 	typedef HINSTANCE DLHANDLE;
 	typedef FARPROC DLFUNC;
 	inline DLHANDLE DLLINTERNAL DLOPEN(const char *filename) {
